@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Public Policy Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .policy-buttons {
+            display: flex;
+            justify-content: center; /* center the buttons horizontally */
+            gap: 20px; /* space between buttons */
+            margin-top: 30px;
+        }
+
+        .policy-buttons a button {
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .policy-buttons a button:hover {
+            transform: scale(1.05);
+            background-color: #f0f0f0;
+        }
+
+        .education-btn {
+            background-color: #4CAF50; /* green */
+            color: white;
+        }
+
+        .health-btn {
+            background-color: #2196F3; /* blue */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Public Policy Portal</h1>
+    <p>Select a category to explore policies:</p>
+
+    <div class="policy-buttons">
+        <a href="/education">
+            <button class="education-btn">📘 Education Policies</button>
+        </a>
+        <a href="/health">
+            <button class="health-btn">🩺 Health Policies</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login - Public Policy</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .auth-box { width:350px;margin:100px auto;padding:22px;background:#fff;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.08); }
+    input{width:100%;padding:10px;margin-top:10px;border-radius:6px;border:1px solid #ddd;}
+    button{width:100%;padding:10px;margin-top:12px;border-radius:6px;border:none;background:#007bff;color:#fff;cursor:pointer;}
+    a{color:#007bff}
+  </style>
+</head>
+<body style="background:#f0f4ff;font-family:Arial,Helvetica,sans-serif;">
+  <div class="auth-box">
+    <h2 style="margin:0 0 12px 0">Login</h2>
+    <form method="POST" action="/login">
+      <input name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p style="margin-top:12px">No account? <a href="/register">Register</a> · <a href="/forgot_password">Forgot Password</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PolicyNav | Education Policy Navigation Using AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>🎓 PolicyNav - Education Policy Navigation Using AI</h1>
+
+    <form method="post" action="/search/education">
+        <input type="text" name="query" placeholder="Enter your query..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <div class="results-container">
+            {% for r in results %}
+                <div class="result-card">
+                    <h3>{{ r.title }}</h3>
+                    <div class="meta">Relevance Score: {{ r.score }}</div>
+                    <p>{{ r.summary }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h2>📊 Relevance Score Visualization</h2>
+            <canvas id="scoreChart" width="600" height="300"></canvas>
+        </div>
+
+        <!-- JSON for Chart.js -->
+        <script id="results-data" type="application/json">
+            {{ results | tojson | safe }}
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const resultsData = JSON.parse(document.getElementById("results-data").textContent);
+            const titles = resultsData.map(item => item.title || "No Title");
+            const scores = resultsData.map(item => item.score || 0);
+
+            if (titles.length) {
+                const ctx = document.getElementById('scoreChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: titles,
+                        datasets: [{
+                            label: 'Relevance Score',
+                            data: scores,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: true },
+                            title: { display: true, text: 'Relevance Score per Policy' }
+                        },
+                        scales: { y: { beginAtZero: true, max: 1 } }
+                    }
+                });
+            }
+        });
+        </script>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+        <a href="/" style="text-decoration: none;">
+            <button>⬅ Back to Home</button>
+        </a>
+    </div>
+</body>
+</html>
